@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNO - Giriş Yap</title>
+    <link rel="stylesheet" href="css/modern-style.css">
+</head>
+<body class="auth-page">
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-logo">UNO</div>
+        <div class="loading-spinner"></div>
+        <div class="loading-text">Yükleniyor...</div>
+    </div>
+
+    <div class="auth-container">
+        <h1 class="uno-title">UNO</h1>
+        <div class="tabs">
+            <button id="tab-login" class="tab active">Giriş Yap</button>
+            <button id="tab-register" class="tab">Kayıt Ol</button>
+        </div>
+        
+        <form id="auth-form">
+            <div class="input-group">
+                <input type="text" id="username" placeholder="Kullanıcı Adı" required minlength="3">
+            </div>
+            <div class="input-group">
+                <input type="password" id="password" placeholder="Şifre" required minlength="4">
+            </div>
+            <button type="submit" id="submit-btn" class="btn-gradient">Giriş Yap</button>
+        </form>
+        <div id="auth-message" class="message"></div>
+    </div>
+    
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>

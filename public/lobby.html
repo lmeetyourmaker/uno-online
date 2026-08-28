@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNO - Lobi</title>
+    <link rel="stylesheet" href="css/modern-style.css">
+</head>
+<body class="lobby-page">
+    <!-- Animated Particles -->
+    <div class="lobby-particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-logo">UNO</div>
+        <div class="loading-spinner"></div>
+        <div class="loading-text">Yükleniyor...</div>
+    </div>
+
+    <nav class="top-bar">
+        <div class="user-info">
+            <div id="user-avatar" class="avatar">U</div>
+            <span id="user-name">Kullanıcı</span>
+        </div>
+        <button id="logout-btn" class="btn-outline">Çıkış Yap</button>
+    </nav>
+
+    <div class="lobby-container">
+        <!-- Bottom Left Navigation Buttons -->
+        <div class="lobby-nav-bottom">
+            <button id="nav-join" class="nav-button-large">🎮 Oyuna Katıl</button>
+            <button id="nav-create" class="nav-button-large">🏰 Lobi Kur</button>
+            <button id="nav-settings" class="nav-button-large">⚙️ Ayarlar</button>
+        </div>
+
+        <!-- Center content area (will be hidden initially) -->
+        <div id="room-selection" style="display: none;">
+            <div class="card-panel">
+                <h2>🎮 Oda Oluştur</h2>
+                <p>Arkadaşlarınla oynamak için yeni bir oda kur.</p>
+                <button id="create-room-btn" class="btn-primary">Oda Oluştur</button>
+            </div>
+            
+            <div class="card-panel">
+                <h2>🚀 Odaya Katıl</h2>
+                <p>Var olan bir odaya katıl.</p>
+                <div class="input-group">
+                    <input type="text" id="join-room-code" placeholder="Oda Kodu">
+                </div>
+                <button id="join-room-btn" class="btn-primary">Katıl</button>
+            </div>
+        </div>
+
+        <div id="waiting-room" style="display: none;">
+            <div class="card-panel">
+                <h2>⏳ Bekleme Odası</h2>
+                <div class="room-code-display">
+                    Oda Kodu: <span id="room-code-text" class="monospace"></span>
+                    <button id="copy-code-btn" class="btn-small">Kopyala</button>
+                </div>
+                
+                <div class="player-list-container">
+                    <ul id="player-list">
+                        <!-- Players will be added here -->
+                    </ul>
+                </div>
+                
+                <div class="room-actions">
+                    <button id="ready-btn" class="btn-secondary">Hazırım</button>
+                    <button id="start-game-btn" class="btn-primary" style="display:none;">🎲 Oyunu Başlat</button>
+                    <button id="leave-room-btn" class="btn-outline">Odadan Ayrıl</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Settings Panel -->
+        <div id="settings-panel" class="card-panel" style="display: none;">
+            <div class="settings-header">
+                <h2>⚙️ Ayarlar</h2>
+                <button id="close-settings" class="close-btn">✕</button>
+            </div>
+            <div class="settings-content">
+                <div class="setting-item">
+                    <label>🔊 Efekt Sesleri</label>
+                    <input type="range" id="sfx-volume" min="0" max="100" value="70">
+                    <span id="sfx-volume-value">70%</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Welcome Panel (Right Side Content) -->
+        <div id="welcome-panel" class="welcome-panel" style="display: block;">
+            <div class="welcome-content">
+                <h1>🎴 UNO'ya Hoş Geldin!</h1>
+                <p class="welcome-subtitle">Efsanevi kart oyunu arkadaşlarınla</p>
+                
+                <div class="welcome-features">
+                    <div class="feature-item">
+                        <div class="feature-icon">🎮</div>
+                        <div class="feature-text">
+                            <h3>Heyecanlı Oyun</h3>
+                            <p>Arkadaşlarınla rekabet et</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🏆</div>
+                        <div class="feature-text">
+                            <h3>Skor Tablosu</h3>
+                            <p>En iyi oyuncuları gör</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">⚡</div>
+                        <div class="feature-text">
+                            <h3>Hızlı Oyun</h3>
+                            <p>Anında başla</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="welcome-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">10K+</div>
+                        <div class="stat-label">Aktif Oyuncu</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">5K+</div>
+                        <div class="stat-label">Oyun/Dakika</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">4.8</div>
+                        <div class="stat-label">⭐ Puan</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/lobby.js"></script>
+</body>
+</html>

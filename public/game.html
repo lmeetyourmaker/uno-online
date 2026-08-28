@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNO - Oyun</title>
+    <link rel="stylesheet" href="css/modern-style.css">
+    <link rel="stylesheet" href="css/modern-game.css">
+</head>
+<body class="game-page">
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-logo">UNO</div>
+        <div class="loading-spinner"></div>
+        <div class="loading-text">Oyun Yükleniyor...</div>
+    </div>
+    
+    <!-- Game Table -->
+    <div id="game-table">
+        <!-- Settings Button -->
+        <button id="settings-btn" class="settings-button">⚙️</button>
+        
+        <!-- Table Decorations -->
+        <div class="game-table-decorations">
+            <div class="table-chip"></div>
+            <div class="table-chip"></div>
+            <div class="table-chip"></div>
+            <div class="table-chip"></div>
+            <div class="table-chip"></div>
+            <div class="table-chip"></div>
+        </div>
+        <!-- Top Opponent -->
+        <div id="opponent-top" class="opponent-slot opponent-slot-top">
+            <div class="opponent-info"></div>
+            <div class="opponent-hand"></div>
+        </div>
+
+        <!-- Left Opponent -->
+        <div id="opponent-left" class="opponent-slot opponent-slot-left">
+            <div class="opponent-info"></div>
+            <div class="opponent-hand opponent-hand-vertical"></div>
+        </div>
+
+        <!-- Right Opponent -->
+        <div id="opponent-right" class="opponent-slot opponent-slot-right">
+            <div class="opponent-info"></div>
+            <div class="opponent-hand opponent-hand-vertical"></div>
+        </div>
+
+        <!-- Center Area -->
+        <div id="center-area">
+            <div id="game-info-bar">
+                <div id="direction-indicator">↻</div>
+                <div id="turn-display">Oyun Başlıyor...</div>
+                <div id="color-indicator">Renk: <span id="current-color-box"></span></div>
+                <div id="timer-display" style="display:none;">⏱️ <span id="time-remaining">30</span>s</div>
+            </div>
+            <div id="table-cards">
+                <div id="draw-pile" class="game-card card-back">
+                    <span>UNO</span>
+                </div>
+                <div id="discard-pile">
+                    <!-- top card goes here -->
+                </div>
+            </div>
+            <div id="action-buttons">
+                <button id="uno-btn" class="uno-button" style="display:none;">UNO!</button>
+                <button id="catch-btn" class="catch-button" style="display:none;">Yakaladım!</button>
+            </div>
+        </div>
+
+        <!-- My Hand (Bottom) -->
+        <div id="my-area">
+            <div id="my-info">
+                <span id="my-name">Ben</span>
+                <span id="turn-indicator" style="display:none;">🔥 Senin Sıran!</span>
+            </div>
+            <div id="my-hand">
+                <!-- cards go here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Log -->
+    <div id="game-log"></div>
+
+    <!-- Color Picker Modal -->
+    <div id="color-picker-modal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <h3>🎨 Bir Renk Seç</h3>
+            <div class="colors">
+                <div class="color-circle" data-color="red" style="background: linear-gradient(135deg, #ff4757, #ff6b81);"></div>
+                <div class="color-circle" data-color="blue" style="background: linear-gradient(135deg, #1e90ff, #3498db);"></div>
+                <div class="color-circle" data-color="green" style="background: linear-gradient(135deg, #2ed573, #26de81);"></div>
+                <div class="color-circle" data-color="yellow" style="background: linear-gradient(135deg, #ffa502, #ff7f50);"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Over Modal -->
+    <div id="game-over-modal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <h2 id="winner-text">🏆 Oyun Bitti!</h2>
+            <div id="score-table-container">
+                <table id="score-list">
+                    <thead>
+                        <tr>
+                            <th>Oyuncu</th>
+                            <th>Skor</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <button id="return-lobby-btn" class="btn-primary">🏠 Lobiye Dön</button>
+        </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div id="settings-modal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <h2>⚙️ Ayarlar</h2>
+            <div class="settings-section">
+                <h3>🔊 Ses Ayarları</h3>
+                <div class="setting-item">
+                    <label>Genel Ses</label>
+                    <input type="range" id="master-volume" min="0" max="100" value="50">
+                    <span id="master-volume-value">50%</span>
+                </div>
+                <div class="setting-item">
+                    <label>Effekt Sesleri</label>
+                    <input type="range" id="sfx-volume" min="0" max="100" value="70">
+                    <span id="sfx-volume-value">70%</span>
+                </div>
+            </div>
+            <div class="settings-section">
+                <h3>🎮 Oyun Ayarları</h3>
+                <div class="setting-item">
+                    <label>
+                        <input type="checkbox" id="auto-uno" checked>
+                        Otomatik UNO
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <label>
+                        <input type="checkbox" id="show-timer" checked>
+                        Süre Göstergesi
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <label>
+                        <input type="checkbox" id="particle-effects" checked>
+                        Partikül Efektleri
+                    </label>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button id="close-settings-btn" class="btn-primary">Kapat</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/game.js"></script>
+</body>
+</html>
