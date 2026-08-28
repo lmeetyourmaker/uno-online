@@ -1,0 +1,9 @@
+[phases.build]
+cmds = ["npm install"]
+
+[phases.start]
+cmd = "node server.js"
+
+[static]
+# Enable static file serving
+guest = "."
